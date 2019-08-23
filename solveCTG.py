@@ -1,5 +1,3 @@
-import copy
-
 class Button:
 	def __init__(self, func, name):
 		self.func = func
