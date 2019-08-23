@@ -74,9 +74,9 @@ def main():
 		RemoveLastDigit()
 	]
 
-	start = 50
-	goal = 9
-	max_moves = 4
+	start = int(input("Starting value: "))
+	goal = int(input("Goal: "))
+	max_moves = int(input("Amount of Moves: "))
 
 	print(" ".join(solveCTG(buttons, start, goal, max_moves)[1]))
 
