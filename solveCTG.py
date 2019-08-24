@@ -31,7 +31,7 @@ class Div(Button):
 		self.name = f"/{n}"
 
 
-class CS(Button):
+class ChangeSign(Button):
 	def __init__(self):
 		self.func =lambda x: -x
 		self.name = f"+-"
@@ -43,13 +43,10 @@ class RemoveLastDigit(Button):
 		self.name = f"<<"
 
 
-def solveCTG(buttons, start, goal, max_moves = 10, log = None):
-
-	if log == None:
-		log = []
+def solveCTG(buttons, start, goal, max_moves):
 	
 	if max_moves == 0:
-		 return False, log
+		 return False, None
 
 	for button in buttons:
 		try:
@@ -65,14 +62,32 @@ def solveCTG(buttons, start, goal, max_moves = 10, log = None):
 		if result == True:
 			return True, ([str(button)] + log)
 
-	return False, log
+	return False, None
+
+
+def parse_buttons(button_symbols):
+	return list(map(parse_button, button_symbols.split(" ")))
+
+
+def parse_button(button_symbol):
+
+	if button_symbol == "<<":
+		return RemoveLastDigit()
+	elif button_symbol == "+-":
+		return ChangeSign()
+	elif button_symbol.startswith("+"):
+		return Add(int(button_symbol[1:]))
+	elif button_symbol.startswith("-"):
+		return Sub(int(button_symbol[1:]))
+	elif button_symbol.startswith("X"):
+		return Mul(int(button_symbol[1:]))
+	elif button_symbol.startswith("/"):
+		return Div(int(button_symbol[1:]))
+
 
 def main():
-	buttons = [
-		Mul(3),
-		Div(5),
-		RemoveLastDigit()
-	]
+
+	buttons = parse_buttons(input("Available buttons: "))
 
 	start = int(input("Starting value: "))
 	goal = int(input("Goal: "))
