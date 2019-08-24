@@ -9,38 +9,32 @@ class Button:
 
 class Mul(Button):
 	def __init__(self, factor):
-		self.func = lambda x: x * factor
-		self.name = f"X{factor}"
+		super().__init__(lambda x: x * factor, f"X{factor}")
 
 
 class Add(Button):
 	def __init__(self, n):
-		self.func =lambda x: x + n
-		self.name = f"+{n}"
+		super().__init__(lambda x: x + n, f"+{n}")
 
 
 class Sub(Button):
 	def __init__(self, n):
-		self.func = lambda x: x - n
-		self.name = f"-{n}"
+		super().__init__(lambda x: x - n, f"-{n}")
 
 
 class Div(Button):
 	def __init__(self, n):
-		self.func =lambda x: x / n
-		self.name = f"/{n}"
+		super().__init__(lambda x: x / n, f"/{n}")
 
 
 class ChangeSign(Button):
 	def __init__(self):
-		self.func =lambda x: -x
-		self.name = f"+-"
+		super().__init__(lambda x: -x, "+-")
 
 
 class RemoveLastDigit(Button):
 	def __init__(self):
-		self.func =lambda x: int(str(x)[0:-1])
-		self.name = f"<<"
+		super().__init__(lambda x: int(str(x)[0:-1]), "<<")
 
 
 def solveCTG(buttons, start, goal, max_moves):
