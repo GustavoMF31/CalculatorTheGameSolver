@@ -24,7 +24,7 @@ class Sub(Button):
 
 class Div(Button):
     def __init__(self, n):
-        super().__init__(lambda x: x / n, f"/{n}")
+        super().__init__(lambda x: perfect_div(x, n), f"/{n}")
 
 
 class ChangeSign(Button):
@@ -40,6 +40,13 @@ class RemoveLastDigit(Button):
 class InsertDigit(Button):
     def __init__(self, n):
         super().__init__(lambda x: int(str(x) + str(n)), str(n))
+
+
+def perfect_div(a, b):
+    if a % b == 0:
+        return a // b
+    else:
+        raise ValueError(f"{a} is not a multiple of {b}")
 
 
 def parse_buttons(button_symbols):
