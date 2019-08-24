@@ -32,4 +32,6 @@ def main():
 
 	print(" ".join(solveCTG(available_buttons, start, goal, max_moves)[1]))
 
-main()
+
+if __name__ == "__main__":
+	main()

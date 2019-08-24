@@ -37,6 +37,11 @@ class RemoveLastDigit(Button):
         super().__init__(lambda x: int(str(x)[0:-1]), "<<")
 
 
+class InsertDigit(Button):
+    def __init__(self, n):
+        super().__init__(lambda x: int(str(x) + str(n)), str(n))
+
+
 def parse_buttons(button_symbols):
     return list(map(parse_button, button_symbols.split(" ")))
 
@@ -55,3 +60,5 @@ def parse_button(button_symbol):
         return Mul(int(button_symbol[1:]))
     elif button_symbol.startswith("/"):
         return Div(int(button_symbol[1:]))
+    else:
+        return InsertDigit(int(button_symbol))
