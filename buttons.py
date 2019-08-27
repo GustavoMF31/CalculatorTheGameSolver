@@ -9,7 +9,7 @@ class Button:
 
 class Mul(Button):
     def __init__(self, factor):
-        super().__init__(lambda x: x * factor, f"X{factor}")
+        super().__init__(lambda x: x * factor, f"*{factor}")
 
 
 class Add(Button):
@@ -61,6 +61,11 @@ class ReplaceNumber(Button):
             raise ValueError(f"String '{string}' does not contain '{old}' to replace")
 
 
+class Square(Button):
+    def __init__(self, n):
+        super().__init__(lambda x: x * x, f"X{n}")
+
+
 def parse_buttons(button_symbols):
     return list(map(parse_button, button_symbols.split(" ")))
 
@@ -75,13 +80,14 @@ def parse_button(button_symbol):
         return Add(int(button_symbol[1:]))
     elif button_symbol.startswith("-"):
         return Sub(int(button_symbol[1:]))
-    elif button_symbol.startswith("X"):
+    elif button_symbol.startswith("*"):
         return Mul(int(button_symbol[1:]))
     elif button_symbol.startswith("/"):
         return Div(int(button_symbol[1:]))
     elif "=>" in button_symbol:
         nums = button_symbol.split("=>")
-
         return ReplaceNumber(nums[0], nums[1])
+    elif button_symbol.startswith("X"):
+        return Square(int(button_symbol[1:]))
     else:
         return InsertDigit(int(button_symbol))
