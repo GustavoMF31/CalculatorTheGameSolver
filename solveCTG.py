@@ -9,7 +9,7 @@ def solveCTG(buttons, start, goal, max_moves):
 
         try:
             next_num = button.func(start)
-        except Exception as e:
+        except ValueError as e:
             continue
 
         if next_num == goal:
