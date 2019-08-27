@@ -36,7 +36,7 @@ class Div(Button):
 
 class ChangeSign(Button):
     def __init__(self):
-        super().__init__(lambda x: -x, "+-")
+        super().__init__(lambda x: -x, "+/-")
 
 
 class RemoveLastDigit(Button):
@@ -74,7 +74,7 @@ def parse_button(button_symbol):
 
     if button_symbol == "<<":
         return RemoveLastDigit()
-    elif button_symbol == "+-":
+    elif button_symbol == "+/-":
         return ChangeSign()
     elif button_symbol.startswith("+"):
         return Add(int(button_symbol[1:]))
